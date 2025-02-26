@@ -8,3 +8,5 @@ A plugin to generate temporary worlds for testing and other purposes.
 `/worlds` - List all available temporary worlds.
 
 `/world <name>` - Teleport to a specific world based on its name.
+
+`/cleanworlds` - Clean up all temporary worlds. Also done on server stop automatically

@@ -32,7 +32,7 @@ public class TempWorldCommand {
                 return;
             }
             player.sendMessage(Component.text("Creating temporary world... please wait a moment.", NamedTextColor.GREEN));
-            player.sendMessage(Component.text("Warning: worlds are deleted on server stop!", NamedTextColor.DARK_RED));
+            player.sendMessage(Component.text("Warning: worlds are automatically deleted on server stop!", NamedTextColor.DARK_RED));
             Location location = WorldManager.createNewWorld(name);
             Bukkit.getScheduler().runTaskTimer(TempWorld.getInstance(), task -> {
                 if (location.isWorldLoaded()) {
