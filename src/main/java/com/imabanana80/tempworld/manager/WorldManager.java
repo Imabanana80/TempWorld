@@ -7,6 +7,7 @@ import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -26,6 +27,7 @@ public class WorldManager {
         }
         World world = Bukkit.createWorld(new WorldCreator("world-" + Id));
         worlds.put(name, world);
+        world.setAutoSave(false);
         return world.getSpawnLocation();
     }
 
@@ -44,7 +46,22 @@ public class WorldManager {
             for (Player player : world.getPlayers()) {
                 player.teleport(spawn);
             }
-            world.getWorldFolder().delete();
+            File worldFolder = world.getWorldFolder();
+            recursiveDelete(worldFolder);
+        }
+        worlds.clear();
+    }
+    public static void recursiveDelete(File file) {
+        if (file.isDirectory()) {
+            File[] children = file.listFiles();
+            if (children != null) {
+                for (File child : children) {
+                    recursiveDelete(child);
+                }
+            }
+        }
+        if(!file.delete()) {
+            file.deleteOnExit();
         }
     }
 }

@@ -98,4 +98,17 @@ public class TempWorldCommand {
             }, 0, 1);
         }
     }
+
+    @Command("cleanworlds")
+    @Permission("tempworld.clean")
+    public void onTempworldCleanAll(
+            CommandSender sender
+    ) {
+        WorldManager.scrubWorlds();
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            if (player.hasPermission("tempworld.clean")) {
+                player.sendMessage(Component.text("Scrubbing all temporary worlds!", NamedTextColor.AQUA));
+            }
+        }
+    }
 }
