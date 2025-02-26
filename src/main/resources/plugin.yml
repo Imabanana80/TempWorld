@@ -1,0 +1,6 @@
+name: temp-world
+version: ${version}
+api-version: '1.21'
+main: com.imabanana80.tempworld.TempWorld
+author: Imabanana80
+website: https://imabanana80.com/
